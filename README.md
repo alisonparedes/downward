@@ -50,6 +50,20 @@ and on macOS we do not test LP solvers (yet).
 See [BUILD.md](BUILD.md).
 
 
+## Build environment
+
+To build and run an Ubuntu-based Docker container
+
+```bash
+docker build -t downward-dev .
+```
+
+Run an interactive container with the repository mounted and workdir set to the source:
+
+```bash
+docker run --rm -it -v "$(pwd)":/home/builder/src -w /home/builder/src downward-dev bash
+```
+
 ## Contributors
 
 The following list includes all people that actively contributed to
