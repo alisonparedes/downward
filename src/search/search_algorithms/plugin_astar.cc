@@ -22,7 +22,7 @@ public:
             "An evaluator that re-evaluates a state before it is expanded.",
             plugins::ArgumentInfo::NO_DEFAULT);
         eager_search::add_eager_search_options_to_feature(*this, "astar");
-
+           // #TODO: add continue_on_solved flag
         document_note(
             "lazy_evaluator",
             "When a state s is taken out of the open list, the lazy evaluator h "

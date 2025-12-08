@@ -26,13 +26,15 @@ EagerSearch::EagerSearch(
     const shared_ptr<PruningMethod> &pruning,
     const shared_ptr<Evaluator> &lazy_evaluator, OperatorCost cost_type,
     int bound, double max_time, const string &description,
-    utils::Verbosity verbosity)
+    utils::Verbosity verbosity, bool continue_on_solved)
     : SearchAlgorithm(cost_type, bound, max_time, description, verbosity),
       reopen_closed_nodes(reopen_closed),
       open_list(open->create_state_open_list()),
       f_evaluator(f_eval), // default nullptr
       preferred_operator_evaluators(preferred),
       lazy_evaluator(lazy_evaluator), // default nullptr
+      //#TODO: Add continue on solve like in IteratedSearch       continue_on_solve(opts.get<bool>("continue_on_solve")),
+      // Where to implement continue_on_solve?
       pruning_method(pruning) {
     if (lazy_evaluator && !lazy_evaluator->does_cache_estimates()) {
         cerr << "lazy_evaluator must cache its estimates" << endl;

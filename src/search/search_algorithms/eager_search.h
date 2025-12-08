@@ -52,7 +52,8 @@ public:
         const std::shared_ptr<PruningMethod> &pruning,
         const std::shared_ptr<Evaluator> &lazy_evaluator,
         OperatorCost cost_type, int bound, double max_time,
-        const std::string &description, utils::Verbosity verbosity);
+        const std::string &description, utils::Verbosity verbosity,
+        bool continue_on_solved = false);
 
     virtual void print_statistics() const override;
 

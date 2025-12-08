@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Fast Downward",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["/home/builder/src/misc/tests/benchmarks/miconic/domain.pddl", "/home/builder/src/misc/tests/benchmarks/miconic/s1-0.pddl", "--search", "'astar(lmcut())'"]
+        }
+    ]
+}

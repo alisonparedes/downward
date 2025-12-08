@@ -12,15 +12,22 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
+    gdb \
+    gdbserver \
     python3 \
     python3-venv \
     ca-certificates \
     wget \
     git \
+    python3-pip \  
  && rm -rf /var/lib/apt/lists/*
+ # TODO: Install gdb
 
-# Optional: make 'python' point to python3
+# Make 'python' point to python3
 RUN ln -sf /usr/bin/python3 /usr/bin/python || true
+
+# Install Python packages for testing
+RUN python3 -m pip install --no-cache-dir pytest
 
 # Create a non-root user to run builds (optional but recommended)
 ARG USERNAME=builder
