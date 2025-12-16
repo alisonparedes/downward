@@ -50,19 +50,32 @@ and on macOS we do not test LP solvers (yet).
 See [BUILD.md](BUILD.md).
 
 
-## Build environment
+## To develop (and debug) using VS Code in a container
+That's what .devcontainer/devcontainer.json and .vscode/launch.json configuration files are for.
 
-To build and run an Ubuntu-based Docker container
+Assumes you have installed VS Code extensions, Dev Container and C++ Extension Pack locally
 
-```bash
-docker build -t downward-dev .
-```
+To build, run and connect to a new container for development:
 
-Run an interactive container with the repository mounted and workdir set to the source:
+1. Open this repo in VS Code
+2. Click on the >< button in the lower left corner of VS Code window
+3. Select "reopen in container"
 
-```bash
-docker run --rm -it -v "$(pwd)":/home/builder/src -w /home/builder/src downward-dev bash
-```
+To debug Python scripts from VS Code in the new container
+
+Make sure VS Code extension, Python Debugger is isntalled on the container (from Extensions panel in VS Code)
+
+From the Run and Debug navigation panel in VS Code
+
+Make sure VS Code extension, C++ Extension Pack, is installed on the container (from Extensions panel in VS Code)
+
+1. Select Python Debugger: Fast Downward
+2. Click play |> button
+
+To debug C++ executable
+
+1. Select C++ Debugger: Downward
+2. Click play |> button
 
 ## Contributors
 
