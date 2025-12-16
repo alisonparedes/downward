@@ -5,11 +5,35 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "C++ Debugger: Downward",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/builds/debug/bin/downward", //  'astar(lmcut())' --internal-plan-file sas_plan < output.sas",
+            "args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "Python Debugger: Fast Downward",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/fast-downward.py",
-            "args": ["/home/builder/src/misc/tests/benchmarks/miconic/domain.pddl", "/home/builder/src/misc/tests/benchmarks/miconic/s1-0.pddl", "--search", "'astar(lmcut())'"]
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--search", "astar(lmcut())"]
         }
     ]
 }
