@@ -22,7 +22,9 @@ public:
             "An evaluator that re-evaluates a state before it is expanded.",
             plugins::ArgumentInfo::NO_DEFAULT);
         eager_search::add_eager_search_options_to_feature(*this, "astar");
-           // #TODO: add continue_on_solved flag
+        add_option<bool>("continue_on_solved",  // Adding this option here since it is for astar only. Type is just bool like "reopen_closed" argument
+                                       "continue search after finding a solution",
+                                       "false");
         document_note(
             "lazy_evaluator",
             "When a state s is taken out of the open list, the lazy evaluator h "

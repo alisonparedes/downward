@@ -190,7 +190,7 @@ bool FunctionCallNode::collect_argument(
 }
 
 void FunctionCallNode::collect_keyword_arguments(
-    const vector<plugins::ArgumentInfo> &argument_infos,
+    const vector<plugins::ArgumentInfo> &argument_infos, // TODO: Where does this list of valid keyword arguments come from?
     DecorateContext &context, CollectedArguments &arguments) const {
     unordered_map<string, plugins::ArgumentInfo> argument_infos_by_key;
     for (const plugins::ArgumentInfo &arg_info : argument_infos) {
@@ -311,7 +311,7 @@ DecoratedASTNodePtr FunctionCallNode::decorate(DecorateContext &context) const {
     }
     shared_ptr<const plugins::Feature> feature = registry.get_feature(name);
     const vector<plugins::ArgumentInfo> &argument_infos =
-        feature->get_arguments();
+        feature->get_arguments();  // TODO: How do I add an argument?
 
     CollectedArguments arguments_by_key;
     collect_keyword_arguments(argument_infos, context, arguments_by_key);

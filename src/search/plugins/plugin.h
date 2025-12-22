@@ -27,7 +27,7 @@ class Feature {
     std::string title;
     std::string synopsis;
     std::string subcategory;
-    std::vector<ArgumentInfo> arguments;
+    std::vector<ArgumentInfo> arguments;  // TODO: How do I add arguments?
     std::vector<PropertyInfo> properties;
     std::vector<LanguageSupportInfo> language_support;
     std::vector<NoteInfo> notes;

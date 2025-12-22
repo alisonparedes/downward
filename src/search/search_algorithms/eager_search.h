@@ -19,6 +19,7 @@ class Feature;
 namespace eager_search {
 class EagerSearch : public SearchAlgorithm {
     const bool reopen_closed_nodes;
+    //const bool continue_on_solved;  // How do I make this optional
 
     std::unique_ptr<StateOpenList> open_list;
     std::shared_ptr<Evaluator> f_evaluator;
@@ -52,8 +53,8 @@ public:
         const std::shared_ptr<PruningMethod> &pruning,
         const std::shared_ptr<Evaluator> &lazy_evaluator,
         OperatorCost cost_type, int bound, double max_time,
-        const std::string &description, utils::Verbosity verbosity,
-        bool continue_on_solved = false);
+        const std::string &description, utils::Verbosity verbosity);
+        //bool continue_on_solved = false);
 
     virtual void print_statistics() const override;
 

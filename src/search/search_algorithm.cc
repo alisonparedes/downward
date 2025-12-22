@@ -106,7 +106,7 @@ const Plan &SearchAlgorithm::get_plan() const {
 
 void SearchAlgorithm::set_plan(const Plan &p) {
     solution_found = true;
-    plan = p;
+    plan = p;  //TODO: I'd like to return a set of plans. What does iterated search (anytime?) do with plans?
 }
 
 void SearchAlgorithm::search() {
@@ -128,8 +128,8 @@ bool SearchAlgorithm::check_goal_and_set_plan(const State &state) {
     if (task_properties::is_goal_state(task_proxy, state)) {
         log << "Solution found!" << endl;
         Plan plan;
-        search_space.trace_path(state, plan);
-        set_plan(plan);
+        search_space.trace_path(state, plan);  
+        set_plan(plan);  //TODO: Does this write a plan?
         return true;
     }
     return false;
@@ -177,7 +177,11 @@ tuple<shared_ptr<PruningMethod>> get_search_pruning_arguments_from_options(
 void add_search_algorithm_options_to_feature(
     plugins::Feature &feature, const string &description) {
     ::add_cost_type_options_to_feature(feature);
-    feature.add_option<int>(
+    //feature.add_option<bool>(  // I'm not sure if this is the best place to add this option. It needs to show up in arguments variable
+    //    "_solved",
+    //    "continue search after finding the first solution.",
+    //    "false");
+    feature.add_option<int>(  // What type is a flag?
         "bound",
         "exclusive depth bound on g-values. Cutoffs are always performed according to "
         "the real cost, regardless of the cost_type parameter",

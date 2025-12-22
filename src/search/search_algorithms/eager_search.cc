@@ -26,14 +26,14 @@ EagerSearch::EagerSearch(
     const shared_ptr<PruningMethod> &pruning,
     const shared_ptr<Evaluator> &lazy_evaluator, OperatorCost cost_type,
     int bound, double max_time, const string &description,
-    utils::Verbosity verbosity, bool continue_on_solved)
+    utils::Verbosity verbosity) //bool continue_on_solved)
     : SearchAlgorithm(cost_type, bound, max_time, description, verbosity),
       reopen_closed_nodes(reopen_closed),
       open_list(open->create_state_open_list()),
       f_evaluator(f_eval), // default nullptr
       preferred_operator_evaluators(preferred),
       lazy_evaluator(lazy_evaluator), // default nullptr
-      //#TODO: Add continue on solve like in IteratedSearch       continue_on_solve(opts.get<bool>("continue_on_solve")),
+      // continue_on_solve(opts.get<bool>("continue_on_solve")),
       // Where to implement continue_on_solve?
       pruning_method(pruning) {
     if (lazy_evaluator && !lazy_evaluator->does_cache_estimates()) {
@@ -43,7 +43,7 @@ EagerSearch::EagerSearch(
 }
 
 void EagerSearch::initialize() {
-    log << "Conducting best first search"
+    log << "Conducting best first search"  // TODO: Where does stop on solution happen?
         << (reopen_closed_nodes ? " with" : " without")
         << " reopening closed nodes, (real) bound = " << bound << endl;
     assert(open_list);
@@ -201,8 +201,9 @@ SearchStatus EagerSearch::expand(const SearchNode &node) {
     statistics.inc_expanded();
 
     const State &state = node.get_state();
-    if (check_goal_and_set_plan(state))
-        return SOLVED;
+    if (check_goal_and_set_plan(state))  
+        return SOLVED; // TODO: If continue_on_solve, return IN_PROGRESS and generate_successors
+        // And write plan?
 
     generate_successors(node);
     return IN_PROGRESS;

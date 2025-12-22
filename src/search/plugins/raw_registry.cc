@@ -171,7 +171,7 @@ Features RawRegistry::collect_features(
 
         unordered_map<string, int> parameter_occurrences;
         for (const ArgumentInfo &arg_info : feature.get_arguments()) {
-            if (arg_info.type == TypeRegistry::NO_TYPE) {
+            if (arg_info.type == TypeRegistry::NO_TYPE) {  // TODO: What type should continue_on_solve be?
                 errors.push_back(
                     "Missing Plugin for type of parameter '" + arg_info.key +
                     "' of feature '" + feature_key + "'.");

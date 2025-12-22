@@ -47,7 +47,7 @@ void PlanManager::save_plan(
     filename << plan_filename;
     int plan_number = num_previously_generated_plans + 1;
     if (generates_multiple_plan_files || is_part_of_anytime_portfolio) {
-        filename << "." << plan_number;
+        filename << "." << plan_number;  // TODO: Consider using plan manager to write plans for astar's continue_on_solve config
     } else {
         assert(plan_number == 1);
     }

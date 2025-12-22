@@ -56,7 +56,7 @@ string Feature::get_subcategory() const {
 }
 
 const vector<ArgumentInfo> &Feature::get_arguments() const {
-    return arguments;
+    return arguments; // TODO: Where does this get set?
 }
 
 const vector<PropertyInfo> &Feature::get_properties() const {

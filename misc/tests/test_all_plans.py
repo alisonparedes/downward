@@ -65,7 +65,7 @@ class TestAstar(unittest.TestCase):
             '''A standard configuration of astar'''
             command = f'{FAST_DOWNWARD} {DOMAIN} {TASK} --search "astar(lmcut())"'
             result = subprocess.run(command, 
-                                    shell=True, 
+                                    shell=False, 
                                     capture_output=True)
             self.assertEqual(result.returncode, 
                              0, 
@@ -75,13 +75,27 @@ class TestAstar(unittest.TestCase):
             '''
             Continue on solved is a new argument to astar'''
             result = subprocess.run(f'{FAST_DOWNWARD} {DOMAIN} {TASK} --search "astar(lmcut(), continue_on_solved=true)"', 
-                           shell=True, 
+                           shell=False, 
                            capture_output=True)
             self.assertEqual(result.returncode, 
                              0, 
                              msg=f"STDOUT: {result.stdout.decode()}\nSTDERR: {result.stderr.decode()}")
         
 
+class TestIteratedSearch(unittest.TestCase):
+    
+        def test_iterated_search(self):
+            '''An example of search that generates multiple plans.
+            
+            Based on example from https://www.fast-downward.org/latest/documentation/search/SearchAlgorithm/#iterated_search
+            '''
+            command = f'{FAST_DOWNWARD} {DOMAIN} {TASK} --search "iterated(algorithm_configs, pass_bound=true, repeat_last=false, continue_on_fail=false, continue_on_solve=true, cost_type=normal, bound=infinity, max_time=infinity, description=iterated, verbosity=normal)"'
+            result = subprocess.run(command, 
+                                    shell=False, 
+                                    capture_output=True)
+            self.assertEqual(result.returncode, 
+                                0, 
+                                msg=f"STDOUT: {result.stdout.decode()}\nSTDERR: {result.stderr.decode()}")
 
 def teardown_module(module):
     cleanup()
