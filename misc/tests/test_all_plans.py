@@ -88,6 +88,8 @@ class TestIteratedSearch(unittest.TestCase):
             '''An example of search that generates multiple plans.
             
             Based on example from https://www.fast-downward.org/latest/documentation/search/SearchAlgorithm/#iterated_search
+            
+            TODO: Use this configuration: iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])"
             '''
             command = f'{FAST_DOWNWARD} {DOMAIN} {TASK} --search "iterated(algorithm_configs, pass_bound=true, repeat_last=false, continue_on_fail=false, continue_on_solve=true, cost_type=normal, bound=infinity, max_time=infinity, description=iterated, verbosity=normal)"'
             result = subprocess.run(command, 

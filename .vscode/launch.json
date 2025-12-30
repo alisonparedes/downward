@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "C++ Debugger: Downward",
             "type": "cppdbg",
@@ -33,11 +34,34 @@
             ]
         },
         {
-            "name": "Python Debugger: Fast Downward",
+            "name": "Python Debugger: Iterated", // This doesn't create an output.sas file and I don't know why. Run translate manually, as below, first.
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/fast-downward.py",
-            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--search", "astar(lmcut())"]
+            // TODO: Use this example instead:     
+            // /src/experiments/data/example/domain.pddl \
+            // /src/experiments/data/example/p1.pddl \
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])"
+                     ]
+        },
+        {
+            "name": "Python Debugger: Astar", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+       {
+            "name": "Python Debugger: translate",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "translate",
+            "cwd": "${workspaceFolder}/src",
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--sas-file", "${workspaceFolder}/output.sas"]
         }
     ]
 }
