@@ -129,8 +129,9 @@ bool SearchAlgorithm::check_goal_and_set_plan(const State &state) {
         log << "Solution found!" << endl;
         Plan plan;
         search_space.trace_path(state, plan);  
-        set_plan(plan);  //TODO: Does this write a plan?
-        return true;
+        set_plan(plan);  //TODO How to write multiple plans?
+        //return true;
+        return false; //TODO Does search keep going if this never returns true? Yes.
     }
     return false;
 }

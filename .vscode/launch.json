@@ -10,10 +10,10 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/builds/debug/bin/downward", 
-            //"args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            "args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"], // Calls expand()
             //"args": ["--search", "astar(lmcut(), continue_on_solved=true)", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
             //"args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
-            "args": ["--search", "iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            //"args": ["--search", "iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
             //"args": ["--search", "iterated([lazy_wastar([ipdb()],w=10)])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -61,7 +61,12 @@
             "request": "launch",
             "module": "translate",
             "cwd": "${workspaceFolder}/src",
-            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--sas-file", "${workspaceFolder}/output.sas"]
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--sas-file", "${workspaceFolder}/output.sas"]
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/gripper/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/gripper/prob01.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // WA* finds three solutions.
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/miconic-simpleadl/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic-simpleadl/s1-0.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // Don't use this example. "This configuration does not support conditional effects"
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/philosophers/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/philosophers/p01-phil2.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // Don't use this example. "This configuration does not support axioms"
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/satellite/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/satellite/p25-HC-pfile5.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // Takes too long to run
+
         }
     ]
 }

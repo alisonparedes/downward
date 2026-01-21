@@ -23,7 +23,7 @@ void PruningMethod::initialize(const shared_ptr<AbstractTask> &task_) {
 
 void PruningMethod::prune_operators(
     const State &state, vector<OperatorID> &op_ids) {
-    assert(!task_properties::is_goal_state(TaskProxy(*task), state));
+    //assert(!task_properties::is_goal_state(TaskProxy(*task), state));  //TODO Can I continue_on_solved now?
     /*
       We only measure time with verbose verbosity level because time
       measurements induce a significant overhead, up to 30% for configurations

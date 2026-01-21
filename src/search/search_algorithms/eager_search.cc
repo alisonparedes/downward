@@ -203,9 +203,8 @@ SearchStatus EagerSearch::expand(const SearchNode &node) {
     const State &state = node.get_state();
     if (check_goal_and_set_plan(state))  
         return SOLVED; // TODO: If continue_on_solve, return IN_PROGRESS and generate_successors
-        // And write plan?
-
-    generate_successors(node);
+        //; //DONE What happens if I just let search keep running? Nothing good
+    generate_successors(node); //TODO: Why does this fail when node is a goal?
     return IN_PROGRESS;
 }
 
