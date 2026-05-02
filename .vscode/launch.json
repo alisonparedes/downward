@@ -4,7 +4,8 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+
+
 
         {
             "name": "C++ Debugger: Downward",
@@ -55,6 +56,76 @@
             "args": ["--debug",
                      "${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
                      "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Blocks", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/blocks/domain.pddl", 
+                     "${workspaceFolder}/bettker24/blocks/probBLOCKS-7-0.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Grid", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/grid/domain.pddl", 
+                     "${workspaceFolder}/bettker24/grid/grid.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: NPuzzle", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/npuzzle/domain.pddl", 
+                     "${workspaceFolder}/bettker24/npuzzle/prob-n3-1.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Rovers", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/rovers/domain.pddl", 
+                     "${workspaceFolder}/bettker24/rovers/rovers.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Scanalyzer", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/scanalyzer/domain.pddl", 
+                     "${workspaceFolder}/bettker24/scanalyzer/scanalyzer.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Transport", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/transport/domain.pddl", 
+                     "${workspaceFolder}/bettker24/transport/transport.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: VisitAll", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/visitall/domain.pddl", 
+                     "${workspaceFolder}/bettker24/visitall/p-1-4.pddl", 
                      "--search", "astar(lmcut())"]
         },
        {
