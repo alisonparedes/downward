@@ -46,11 +46,11 @@ void PlanManager::save_plan(
     ostringstream filename;
     filename << plan_filename;
     int plan_number = num_previously_generated_plans + 1;
-    if (generates_multiple_plan_files || is_part_of_anytime_portfolio) {
+    //if (generates_multiple_plan_files || is_part_of_anytime_portfolio) {  // TODO: How do I set genreates_multiple_plan_files?
         filename << "." << plan_number;  // TODO: Consider using plan manager to write plans for astar's continue_on_solve config
-    } else {
-        assert(plan_number == 1);
-    }
+    //} else {
+    //    assert(plan_number == 1);
+    //}
     ofstream outfile(filename.str());
     if (outfile.rdstate() & ofstream::failbit) {
         cerr << "Failed to open plan file: " << filename.str() << endl;

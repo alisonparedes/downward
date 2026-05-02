@@ -129,6 +129,7 @@ bool SearchAlgorithm::check_goal_and_set_plan(const State &state) {
         log << "Solution found!" << endl;
         Plan plan;
         search_space.trace_path(state, plan);  
+        plan_manager.save_plan(plan, task_proxy);  // Copied from iterated_serach.cc
         set_plan(plan);  //TODO How to write multiple plans?
         //return true;
         return false; //TODO Does search keep going if this never returns true? Yes.
