@@ -4,12 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
+
+
         {
             "name": "C++ Debugger: Downward",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/builds/debug/bin/downward", //  'astar(lmcut())' --internal-plan-file sas_plan < output.sas",
-            "args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            "program": "${workspaceFolder}/builds/debug/bin/downward", 
+            "args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"], // Calls expand()
+            //"args": ["--search", "astar(lmcut(), continue_on_solved=true)", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            //"args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            //"args": ["--search", "iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
+            //"args": ["--search", "iterated([lazy_wastar([ipdb()],w=10)])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -29,11 +36,130 @@
             ]
         },
         {
-            "name": "Python Debugger: Fast Downward",
+            "name": "Python Debugger: Iterated", // This doesn't create an output.sas file and I don't know why. Run translate manually, as below, first.
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/fast-downward.py",
-            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--search", "astar(lmcut())"]
+            // TODO: Use this example instead:     
+            // /src/experiments/data/example/domain.pddl \
+            // /src/experiments/data/example/p1.pddl \
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])"
+                     ]
+        },
+        {
+            "name": "Python Debugger: Astar", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: GBFS", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "eager_greedy([lmcut()])"]  // Note: Greedy seach expects a list of heuristic functions
+        },
+        {
+            "name": "Python Debugger: Learned Heuristic", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", 
+                     "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", 
+                     "--search", "eager_greedy([learned()])"]  // Note: Greedy seach expects a list of heuristic functions
+        },
+        {
+            "name": "Python Debugger: Blocks", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/blocks/domain.pddl", 
+                     "${workspaceFolder}/bettker24/blocks/probBLOCKS-7-0.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Grid", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/grid/domain.pddl", 
+                     "${workspaceFolder}/bettker24/grid/grid.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: NPuzzle", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/npuzzle/domain.pddl", 
+                     "${workspaceFolder}/bettker24/npuzzle/prob-n3-1.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Rovers", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/rovers/domain.pddl", 
+                     "${workspaceFolder}/bettker24/rovers/rovers.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Scanalyzer", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/scanalyzer/domain.pddl", 
+                     "${workspaceFolder}/bettker24/scanalyzer/scanalyzer.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: Transport", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/transport/domain.pddl", 
+                     "${workspaceFolder}/bettker24/transport/transport.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+        {
+            "name": "Python Debugger: VisitAll", // This doesn't create an output.sas file
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/fast-downward.py",
+            "args": ["--debug",
+                     "${workspaceFolder}/bettker24/visitall/domain.pddl", 
+                     "${workspaceFolder}/bettker24/visitall/p-1-4.pddl", 
+                     "--search", "astar(lmcut())"]
+        },
+       {
+            "name": "Python Debugger: translate",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "translate",
+            "cwd": "${workspaceFolder}/src",
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/miconic/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic/s1-0.pddl", "--sas-file", "${workspaceFolder}/output.sas"]
+            "args": ["${workspaceFolder}/misc/tests/benchmarks/gripper/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/gripper/prob01.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // WA* finds three solutions.
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/miconic-simpleadl/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/miconic-simpleadl/s1-0.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // Don't use this example. "This configuration does not support conditional effects"
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/philosophers/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/philosophers/p01-phil2.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // Don't use this example. "This configuration does not support axioms"
+            //"args": ["${workspaceFolder}/misc/tests/benchmarks/satellite/domain.pddl", "${workspaceFolder}/misc/tests/benchmarks/satellite/p25-HC-pfile5.pddl", "--sas-file", "${workspaceFolder}/output.sas"] // Takes too long to run
+
         }
     ]
 }

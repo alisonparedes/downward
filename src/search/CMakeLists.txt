@@ -635,6 +635,15 @@ create_fast_downward_library(
 )
 
 create_fast_downward_library(
+    NAME learned_heuristic
+    HELP "A placeholder for a learned heuristic"
+    SOURCES
+        heuristics/learned_heuristic
+    DEPENDS
+        task_properties
+)
+
+create_fast_downward_library(
     NAME context_enhanced_additive_heuristic
     HELP "The context-enhanced additive heuristic"
     SOURCES
