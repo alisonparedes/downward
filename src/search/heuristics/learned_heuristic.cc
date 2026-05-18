@@ -35,11 +35,19 @@ int LearnedHeuristic::compute_heuristic(const State &state) { // TODO: What is t
     // 2. POST to web service
     httplib::Client cli("localhost", 8080);
 
+    // Connectivity test
+    auto response = cli.Get("/");
+
+    if (response && response->status == 200) {
+        return 0;
+    }
+
+
     //auto response = cli.Post(
-   //     "/heuristic",
-   //     request_json.dump(),
-   //     "application/json"
-   // );
+    //     "/heuristic",
+    //     request_json.dump(),
+    //     "application/json"
+    // );
     
     return 0;
 }
