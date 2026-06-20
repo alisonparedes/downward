@@ -12,7 +12,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/builds/debug/bin/downward", 
-            "args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"], // Calls expand()
+            "args": ["--search", "eager_greedy([learned()])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"], // Calls expand()           
+            //"args": ["--search", "eager_greedy([lmcut()])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"], // Calls expand()           
+            //"args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"], // Calls expand()
             //"args": ["--search", "astar(lmcut(), continue_on_solved=true)", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
             //"args": ["--search", "astar(lmcut())", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],
             //"args": ["--search", "iterated([lazy_wastar([ipdb()],w=10), lazy_wastar([ipdb()],w=5), lazy_wastar([ipdb()],w=3), lazy_wastar([ipdb()],w=2), lazy_wastar([ipdb()],w=1)])", "--internal-plan-file", "sas_plan", "<", "${workspaceFolder}/output.sas"],

@@ -34,11 +34,16 @@ int LearnedHeuristic::compute_heuristic(const State &state) { // TODO: What is t
 
     // 2. POST to web service
     httplib::Client cli("localhost", 8080);
-
+    if (log.is_at_least_normal()) {
+        log << "Calling learned heuristic..." << endl;
+    }
     // Connectivity test
     auto response = cli.Get("/");
 
     if (response && response->status == 200) {
+        if (log.is_at_least_normal()) {
+            log << "Response status: 200..." << endl;
+        }
         return 0;
     }
 
